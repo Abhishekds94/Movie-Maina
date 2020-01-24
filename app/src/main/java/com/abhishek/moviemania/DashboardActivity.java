@@ -64,6 +64,7 @@ public class DashboardActivity extends AppCompatActivity {
                     adapter.addAll(myDataas);
                 } else {
                     Toast.makeText(DashboardActivity.this, "No Results Found!!", Toast.LENGTH_SHORT).show();
+                    Log.i("Response!","Response!"+response);
                 }
             }
 

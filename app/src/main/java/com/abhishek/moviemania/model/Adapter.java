@@ -63,6 +63,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            mImageView = itemView.findViewById(R.id.iv_movie_poster);
         }
     }
 
