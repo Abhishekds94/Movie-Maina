@@ -10,7 +10,7 @@ public interface ApiInterface{
 
     @GET("top_rated")
     Call<Result> getResult(
-      @Query("api_key") String api_key
-      //Query("page") int pages
+      @Query("api_key") String api_key,
+      @Query("page") int pages
     );
 }

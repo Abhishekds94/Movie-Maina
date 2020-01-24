@@ -2,6 +2,7 @@ package com.abhishek.moviemania;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.AbsListView;
 import android.widget.Toast;
 
 import com.abhishek.moviemania.API.ApiClient;
@@ -13,6 +14,7 @@ import com.abhishek.moviemania.model.Result;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -29,6 +31,8 @@ public class DashboardActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private Adapter adapter;
     private List<MyDataa> myDataas;
+    private int page_number=1;
+    Boolean isScrolling = true;
 
 
     @Override
@@ -47,12 +51,68 @@ public class DashboardActivity extends AppCompatActivity {
 
         LoadJson();
 
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
+                    isScrolling = true;
+                }
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy){
+                super.onScrolled(recyclerView, dx, dy);
+                if(dy > 0){
+                    final int visibleTreshold = 2;
+                    GridLayoutManager layoutManager = (GridLayoutManager)recyclerView.getLayoutManager();
+                    int lastItem = layoutManager.findFirstCompletelyVisibleItemPosition();
+                    int currentTotalCount = layoutManager.getItemCount();
+
+                    if (currentTotalCount <= lastItem + visibleTreshold){
+                        page_number++;
+                        isScrolling = false;
+                        fetchData();
+                    }
+                }
+            }
+        });
+
+    }
+
+    public void fetchData(){
+
+        ApiInterface apiInterface = ApiClient.getApiClient().create((ApiInterface.class));
+        Call<Result> call;
+        call = apiInterface.getResult(API_KEY, page_number);
+        call.enqueue(new Callback<Result>() {
+            @Override
+            public void onResponse(Call<Result> call, Response<Result> response) {
+                if(response.isSuccessful() && response.body().getResultt() != null) {
+                    if(myDataas != null) {
+                        myDataas.clear();
+                    }
+                    myDataas = response.body().getResultt();
+                    adapter.addAll(myDataas);
+                } else {
+                    Toast.makeText(DashboardActivity.this, "No Results Found!!", Toast.LENGTH_SHORT).show();
+                    Log.i("Response!","Response!"+response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Result> call, Throwable t) {
+                Log.e("Error",t.getLocalizedMessage());
+            }
+        });
+
     }
 
     public void LoadJson(){
         ApiInterface apiInterface = ApiClient.getApiClient().create((ApiInterface.class));
         Call<Result> call;
-        call = apiInterface.getResult(API_KEY);
+        call = apiInterface.getResult(API_KEY,page_number);
         call.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
