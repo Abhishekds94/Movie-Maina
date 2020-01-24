@@ -43,7 +43,18 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return myDataas.size();
+    }
+
+
+    public void addAll(List<MyDataa> myDataas){
+        for(MyDataa myDataa:myDataas)
+            add(myDataa);
+    }
+
+    public void add(MyDataa myDataa){
+        this.myDataas.add(myDataa);
+        notifyItemInserted(myDataas.size()-1);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
