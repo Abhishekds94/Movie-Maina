@@ -1,10 +1,12 @@
 package com.abhishek.moviemania.model;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.abhishek.moviemania.R;
 import com.bumptech.glide.Glide;
@@ -36,6 +38,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         final MyViewHolder holder = myViewHolder;
         final MyDataa model = myDataas.get(i);
 
+        Log.i("Response Data - ", "Response Data-"+myDataas);
+
+        myViewHolder.mMovieTitle.setText(myDataas.get(i).getMovie_title());
+
         Glide.with(context)
                 .load("https://image.tmdb.org/t/p/w500" + String.valueOf(model.getPoster_path()))
                 .into(holder.mImageView);
@@ -60,10 +66,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         ImageView mImageView;
+        TextView mMovieTitle;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.iv_movie_poster);
+            mMovieTitle = itemView.findViewById(R.id.tv_movie_title);
         }
     }
 

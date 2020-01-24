@@ -3,6 +3,15 @@ package com.abhishek.moviemania.model;
 public class MyDataa {
 
     private String poster_path;
+    private String movie_title;
+
+    public String getMovie_title() {
+        return movie_title;
+    }
+
+    public void setMovie_title(String movie_title) {
+        this.movie_title = movie_title;
+    }
 
     public MyDataa(String poster_path){
         this.poster_path = poster_path;
@@ -15,4 +24,5 @@ public class MyDataa {
     public void setPoster_path(String poster_path) {
         this.poster_path = poster_path;
     }
+
 }
