@@ -1,6 +1,6 @@
 package com.abhishek.moviemania.model;
 
-class MyDataa {
+public class MyDataa {
 
     private String poster_path;
 
