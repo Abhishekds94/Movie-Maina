@@ -1,13 +1,16 @@
 package com.abhishek.moviemania.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.abhishek.moviemania.DetailActivity;
 import com.abhishek.moviemania.R;
 import com.bumptech.glide.Glide;
 
@@ -74,7 +77,30 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             mMovieTitle = itemView.findViewById(R.id.tv_movie_title);
             Log.e("Title","Title name-"+mMovieTitle);
 
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick (View v){
+                    int pos = getAdapterPosition();
+                    if (pos!= RecyclerView.NO_POSITION){
+                        MyDataa clickedDataItem = myDataas.get(pos);
+                        Intent intent = new Intent(context, DetailActivity.class);
+                        intent.putExtra("title", myDataas.get(pos).gettitle());
+                        intent.putExtra("poster_path", myDataas.get(pos).getPoster_path());
+                        intent.putExtra("backdrop_path", myDataas.get(pos).getBackdrop_path());
+                        intent.putExtra("overview", myDataas.get(pos).getOverview());
+                        intent.putExtra("vote", myDataas.get(pos).getVote_average());
+                        intent.putExtra("release_date", myDataas.get(pos).getRelease_date());
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                        Toast.makeText(v.getContext(),"You clicked" + clickedDataItem.getTitle(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+            );
+
+
         }
     }
-
 }

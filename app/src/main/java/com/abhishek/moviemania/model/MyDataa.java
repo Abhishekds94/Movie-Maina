@@ -5,9 +5,9 @@ public class MyDataa {
     private String poster_path;
     private String title;
     private String backdrop_path;
-    private int vote_average;
+    private Float vote_average;
     private String overview;
-    private int id;
+    private Integer id;
 
     public String getTitle() {
         return title;
@@ -25,11 +25,11 @@ public class MyDataa {
         this.backdrop_path = backdrop_path;
     }
 
-    public int getVote_average() {
+    public Float getVote_average() {
         return vote_average;
     }
 
-    public void setVote_average(int vote_average) {
+    public void setVote_average(Float vote_average) {
         this.vote_average = vote_average;
     }
 
@@ -45,7 +45,7 @@ public class MyDataa {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
