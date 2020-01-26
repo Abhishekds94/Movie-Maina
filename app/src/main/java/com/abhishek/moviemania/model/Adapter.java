@@ -77,7 +77,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             mMovieTitle = itemView.findViewById(R.id.tv_movie_title);
             Log.e("Title","Title name-"+mMovieTitle);
 
-
+            //For navigation with the clicked movie details
             itemView.setOnClickListener(new View.OnClickListener(){
 
                 @Override
