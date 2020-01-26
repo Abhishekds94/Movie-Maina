@@ -2,168 +2,155 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#0F0E0E">
 
-    <ImageView
-        android:id="@+id/iv_moviePoster"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="310dp"
-        android:fitsSystemWindows="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/logo"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_movieName"
-        android:text="Movie Name: "
-        android:layout_marginLeft="10dp"
-        android:layout_below="@+id/iv_moviePoster"
-        android:textColor="#000"
-        android:layout_marginTop="20dp"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_movieNameValue"
-        android:text="Movie Name"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@+id/iv_moviePoster"
-        android:layout_toRightOf="@+id/tv_movieName"
-        android:textColor="#000"
-        android:layout_marginTop="20dp"
-        android:textSize="18sp"
-        android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_movieRelease"
-        android:text="Release Date: "
-        android:layout_marginLeft="10dp"
-        android:layout_below="@+id/tv_movieName"
-        android:textColor="#000"
-        android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/iv_moviePoster"
+                android:layout_width="match_parent"
+                android:layout_height="310dp"
+                android:fitsSystemWindows="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/logo"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_movieReleaseValue"
-        android:text="Feb 29th"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@+id/tv_movieName"
-        android:layout_toRightOf="@+id/tv_movieRelease"
-        android:textColor="#000"
-        android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_movieName"
+                android:text="Movie Name: "
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/iv_moviePoster"
+                android:textColor="#fff"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_movieTime"
-        android:text="Runtime (mins): "
-        android:layout_marginLeft="10dp"
-        android:layout_below="@+id/tv_movieRelease"
-        android:textColor="#000"
-        android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_movieNameValue"
+                android:text="Movie Name"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/iv_moviePoster"
+                android:layout_toRightOf="@+id/tv_movieName"
+                android:textColor="#fff"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_movieTimeValue"
-        android:text=" 120 mins"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@+id/tv_movieRelease"
-        android:layout_toRightOf="@+id/tv_movieRelease"
-        android:textColor="#000"
-        android:layout_marginTop="10dp"
-        android:paddingLeft="10dp"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_movieRelease"
+                android:text="Release Date: "
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/tv_movieName"
+                android:textColor="#fff"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_movieRating"
-        android:text="Rating: "
-        android:layout_marginLeft="10dp"
-        android:layout_below="@+id/tv_movieTime"
-        android:textColor="#000"
-        android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_movieReleaseValue"
+                android:text="Feb 29th"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/tv_movieName"
+                android:layout_toRightOf="@+id/tv_movieRelease"
+                android:textColor="#fff"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_movieRatingValue"
-        android:text=" 1/10"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@+id/tv_movieTime"
-        android:layout_toRightOf="@+id/tv_movieRelease"
-        android:textColor="#000"
-        android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_movieRating"
+                android:text="Rating: "
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/tv_movieRelease"
+                android:textColor="#fff"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="fav"
-        android:layout_toRightOf="@id/tv_movieReleaseValue"
-        android:layout_below="@id/tv_movieNameValue"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_movieRatingValue"
+                android:text=" 1/10"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/tv_movieRelease"
+                android:layout_toRightOf="@+id/tv_movieRelease"
+                android:textColor="#fff"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    <View
-        android:id="@+id/lineOne"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@android:color/black"
-        android:layout_below="@id/tv_movieRatingValue"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fav"
+                android:layout_toRightOf="@id/tv_movieReleaseValue"
+                android:layout_below="@id/tv_movieNameValue"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="10dp" />
 
-    <TextView
-        android:id="@+id/tv_plot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Plot of the Movie"
-        android:layout_below="@id/lineOne"
-        android:layout_marginLeft="10dp"
-        android:textColor="#000"
-        android:layout_marginTop="20dp"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+            <View
+                android:id="@+id/lineOne"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/white"
+                android:layout_below="@id/tv_movieRatingValue"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
 
-    <TextView
-        android:id="@+id/tv_plotValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="qwertyuiop;lkjhgfdsazxcvbnm,lkjhgfdsaqwertyuiopl;kjhgfdsazxcvjhgbvghj
-                    qwertyuiop;lkjhgfdsazxcvbnm,lkjhgfdsaqwertyuiopl;kjhgfdsazxcvjhgbvghj"
-        android:layout_below="@id/tv_plot"
-        android:layout_margin="10dp"
-        android:textColor="#000"
-        android:layout_marginTop="10dp"
-        android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/tv_plot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Plot of the Movie"
+                android:layout_below="@id/lineOne"
+                android:layout_marginLeft="10dp"
+                android:textColor="#fff"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    <View
-        android:id="@+id/lineThree"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@android:color/black"
-        android:layout_below="@id/tv_plotValue"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"/>
+            <TextView
+                android:id="@+id/tv_plotValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="qwertyuiop;lkjhgfdsazxcvbnm,lkjhgfdsaqwertyuiopl;kjhgfdsazxcvjhgbvghj
+                            qwertyuiop;lkjhgfdsazxcvbnm,lkjhgfdsaqwertyuiopl;kjhgfdsazxcvjhgbvghj"
+                android:layout_below="@id/tv_plot"
+                android:layout_margin="10dp"
+                android:textColor="#fff"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"/>
+
+            <View
+                android:id="@+id/lineThree"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/white"
+                android:layout_below="@id/tv_plotValue"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

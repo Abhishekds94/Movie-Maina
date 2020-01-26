@@ -75,7 +75,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             super(itemView);
             mImageView = itemView.findViewById(R.id.iv_movie_poster);
             mMovieTitle = itemView.findViewById(R.id.tv_movie_title);
-            Log.e("Title","Title name-"+mMovieTitle);
 
             //For navigation with the clicked movie details
             itemView.setOnClickListener(new View.OnClickListener(){
@@ -90,11 +89,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
                         intent.putExtra("poster_path", myDataas.get(pos).getPoster_path());
                         intent.putExtra("backdrop_path", myDataas.get(pos).getBackdrop_path());
                         intent.putExtra("overview", myDataas.get(pos).getOverview());
-                        intent.putExtra("vote", myDataas.get(pos).getVote_average());
+                        intent.putExtra("vote_average", myDataas.get(pos).getVote_average());
                         intent.putExtra("release_date", myDataas.get(pos).getRelease_date());
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
-                        Toast.makeText(v.getContext(),"You clicked" + clickedDataItem.getTitle(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(),"You clicked " + clickedDataItem.getTitle(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }

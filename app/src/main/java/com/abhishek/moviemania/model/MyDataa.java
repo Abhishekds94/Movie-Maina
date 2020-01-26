@@ -1,11 +1,22 @@
 package com.abhishek.moviemania.model;
 
+import android.util.Log;
+
 public class MyDataa {
 
     private String poster_path;
     private String title;
     private String backdrop_path;
-    private Float vote_average;
+    private String vote_average;
+
+    public String getVote_average() {
+        return vote_average;
+    }
+
+    public void setVote_average(String vote_average) {
+        this.vote_average = vote_average;
+    }
+
     private String overview;
     private Integer id;
 
@@ -23,14 +34,6 @@ public class MyDataa {
 
     public void setBackdrop_path(String backdrop_path) {
         this.backdrop_path = backdrop_path;
-    }
-
-    public Float getVote_average() {
-        return vote_average;
-    }
-
-    public void setVote_average(Float vote_average) {
-        this.vote_average = vote_average;
     }
 
     public String getOverview() {
