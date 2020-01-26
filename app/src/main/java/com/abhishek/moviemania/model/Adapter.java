@@ -40,7 +40,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
         Log.i("Response Data - ", "Response Data-"+myDataas);
 
-        myViewHolder.mMovieTitle.setText(myDataas.get(i).getMovie_title());
+        myViewHolder.mMovieTitle.setText(myDataas.get(i).gettitle());
 
         Glide.with(context)
                 .load("https://image.tmdb.org/t/p/w500" + String.valueOf(model.getPoster_path()))
@@ -72,6 +72,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             super(itemView);
             mImageView = itemView.findViewById(R.id.iv_movie_poster);
             mMovieTitle = itemView.findViewById(R.id.tv_movie_title);
+            Log.e("Title","Title name-"+mMovieTitle);
+
         }
     }
 
