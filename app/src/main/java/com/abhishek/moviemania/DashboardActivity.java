@@ -85,7 +85,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         ApiInterface apiInterface = ApiClient.getApiClient().create((ApiInterface.class));
         Call<Result> call;
-        call = apiInterface.getResult(API_KEY, page_number);
+        call = apiInterface.getResult(API_KEY);
         call.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
@@ -112,7 +112,7 @@ public class DashboardActivity extends AppCompatActivity {
     public void LoadJson(){
         ApiInterface apiInterface = ApiClient.getApiClient().create((ApiInterface.class));
         Call<Result> call;
-        call = apiInterface.getResult(API_KEY,page_number);
+        call = apiInterface.getResult(API_KEY);
         call.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {

@@ -28,7 +28,8 @@
             android:text="qwerty"
             android:textSize="14sp"
             android:gravity="center"
-            android:textColor="#000"/>
+            android:textColor="#fff"
+            android:background="#ca3e47"/>
 
     </LinearLayout>
 
