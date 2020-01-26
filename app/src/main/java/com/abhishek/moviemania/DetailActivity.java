@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -27,7 +28,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        movieBackdrop = (ImageView) findViewById(R.id.iv_movie_poster);
+        movieBackdrop = (ImageView) findViewById(R.id.iv_moviePoster);
         movieTitle = (TextView) findViewById(R.id.tv_movieNameValue);
         movieReleaseDate = (TextView) findViewById(R.id.tv_movieReleaseValue);
         movieRating = (TextView) findViewById(R.id.tv_movieRatingValue);
@@ -37,6 +38,7 @@ public class DetailActivity extends AppCompatActivity {
         if (intentThisActivity.hasExtra("title")) {
 
             String backDrop = getIntent().getExtras().getString("backdrop_path");
+            Log.e("BD","BD"+backDrop);
             String title = getIntent().getExtras().getString("title");
             String overview = getIntent().getExtras().getString("overview");
             String vote = getIntent().getExtras().getString("vote_average");
@@ -46,6 +48,12 @@ public class DetailActivity extends AppCompatActivity {
 //            Glide.with(this)
 //                    .load(backDrop)
 //                    .into(movieBackdrop);
+
+            String poster = "https://image.tmdb.org/t/p/w500" + backDrop;
+
+            Glide.with(DetailActivity.this)
+                    .load(poster)
+                    .into(movieBackdrop);
 
             movieTitle.setText(title);
             movieReleaseDate.setText(release_date);

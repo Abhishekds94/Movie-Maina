@@ -17,7 +17,7 @@
             <ImageView
                 android:id="@+id/iv_moviePoster"
                 android:layout_width="match_parent"
-                android:layout_height="310dp"
+                android:layout_height="220dp"
                 android:fitsSystemWindows="true"
                 android:scaleType="fitXY"
                 android:src="@drawable/logo"/>
