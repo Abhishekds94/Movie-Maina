@@ -1,7 +1,11 @@
 package com.abhishek.moviemania;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.AbsListView;
 import android.widget.Toast;
 
@@ -79,6 +83,34 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.popular_movies) {
+            Toast.makeText(this, "popular_movies clicked", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            if (id == R.id.toprated_movies){
+                Toast.makeText(this, "toprated_movies clicked", Toast.LENGTH_SHORT).show();
+                return true;
+            } else {
+                if(id == R.id.fav_movies){
+                    Toast.makeText(this, "Fav movies clicked", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void fetchData(){
