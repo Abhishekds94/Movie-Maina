@@ -3,21 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/popular_movies"
-        android:title="Popular Movies"
+        android:id="@+id/menu_settings"
+        android:title="Settings"
         android:orderInCategory="100"
-        app:showAsAction="never"/>
-
-    <item
-        android:id="@+id/toprated_movies"
-        android:title="Top Rated Movies"
-        android:orderInCategory="100"
-        app:showAsAction="never"/>
-
-    <item
-        android:id="@+id/fav_movies"
-        android:title="Favourite Movies"
-        android:orderInCategory="100"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
 </menu>

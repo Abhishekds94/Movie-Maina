@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Movie Mania</string>
+    <string name="pref_sort_order_label">Sort Order</string>
+    <string name="pref_sort_order_key">sortOrder</string>
+    <string name="pref_sort_popular">Most Popular</string>
+    <string name="pref_highest_rated">Highest Rated</string>
 </resources>
