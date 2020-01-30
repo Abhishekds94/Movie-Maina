@@ -6,7 +6,9 @@
     android:layout_height="150dp"
     android:layout_weight="1"
     app:cardCornerRadius="4dp"
-    android:layout_margin="10dp">
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,13 +19,16 @@
             android:id="@+id/iv_trailer_poster"
             android:layout_width="150dp"
             android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:background="#000"/>
+            android:scaleType="centerInside"
+            android:background="#000"
+            android:src="@drawable/yt"/>
 
         <TextView
             android:id="@+id/tv_trailer_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginLeft="18dp"
             android:layout_marginTop="45dp"
             android:layout_marginRight="15dp"
@@ -32,7 +37,7 @@
             android:maxLines="2"
             android:text="qwertytasfdjkerngvjkernjgvknerjvkegrkjger"
             android:textColor="#fff"
-            android:textSize="23sp" />
+            android:textSize="20sp" />
 
     </RelativeLayout>
 
