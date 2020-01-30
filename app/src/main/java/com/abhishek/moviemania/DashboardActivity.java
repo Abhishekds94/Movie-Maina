@@ -52,18 +52,19 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
 
         recyclerView = findViewById(R.id.rv_dashboard);
         adapter = new Adapter(new ArrayList<MyDataa>(), this);
-        Log.e("ada","adapter"+adapter);
+
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
         if(myDataas != null) {
             myDataas.clear();
-            Log.e("3rd","3rd-"+myDataas);
+
         }
-        Log.e("RV","RV"+recyclerView);
 
         layoutManager = new LinearLayoutManager(DashboardActivity.this);
 
+
+        //To set the layout based on orientation - Portrait and Landscape
         if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
             recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         } else {
@@ -72,9 +73,6 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
 
         recyclerView.setItemAnimator((new DefaultItemAnimator()));
         recyclerView.setNestedScrollingEnabled(false);
-
-//        LoadJson();
-//        checkSortOrder();
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -144,8 +142,6 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
                 startActivity(intent);
                 if(myDataas != null) {
                     clearData();
-                    Log.e("---", "=================================================" + myDataas);
-
                 }
                 return true;
             default:
@@ -187,7 +183,6 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
     public void LoadJson(){
         if(myDataas != null) {
             myDataas.clear();
-            Log.e("3rd","3rd-"+myDataas);
         }
         ApiInterface apiInterface = ApiClient.getApiClient().create((ApiInterface.class));
         Call<Result> call;
@@ -198,11 +193,9 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
                 if(response.isSuccessful() && response.body().getResultt() != null) {
                     if(myDataas != null) {
                         myDataas.clear();
-                        Log.e("1st","1st-"+myDataas);
                     }
                     adapter.notifyDataSetChanged();
                     myDataas = response.body().getResultt();
-                    Log.e("2nd","2nd-"+myDataas);
                     adapter.addAll(myDataas);
                 } else {
                     Toast.makeText(DashboardActivity.this, "No Results Found!!", Toast.LENGTH_SHORT).show();
@@ -220,7 +213,6 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
     public void LoadJson1(){
         if(myDataas != null) {
             myDataas.clear();
-            Log.e("3rd","3rd-"+myDataas);
         }
         ApiInterface apiInterface = ApiClient.getApiClient().create((ApiInterface.class));
         Call<Result> call;
@@ -231,7 +223,6 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
                 if(response.isSuccessful() && response.body().getResultt() != null) {
                     if(myDataas != null) {
                         myDataas.clear();
-                        Log.e("3rd","3rd-"+myDataas);
                     }
                     adapter.notifyDataSetChanged();
                     myDataas = response.body().getResultt();
@@ -254,7 +245,6 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if(myDataas != null) {
             myDataas.clear();
-            Log.e("1st","1st-"+myDataas);
         }
 
         checkSortOrder();
@@ -297,7 +287,6 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
         checkSortOrder();
         if(myDataas != null) {
             myDataas.clear();
-            Log.e("1st","1st-"+myDataas);
         }
 
     }
