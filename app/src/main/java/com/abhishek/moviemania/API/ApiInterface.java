@@ -1,6 +1,7 @@
 package com.abhishek.moviemania.API;
 
 import com.abhishek.moviemania.model.Result;
+import com.abhishek.moviemania.model.ReviewResponse;
 import com.abhishek.moviemania.model.TrailerResponse;
 
 import retrofit2.Call;
@@ -22,6 +23,12 @@ public interface ApiInterface{
 
     @GET("{movie_id}/videos")
     Call<TrailerResponse> getTrailers(
+            @Path("movie_id") int id,
+            @Query("api_key") String api_key
+    );
+
+    @GET("{movie_id}/reviews")
+    Call<ReviewResponse> getReviews(
             @Path("movie_id") int id,
             @Query("api_key") String api_key
     );

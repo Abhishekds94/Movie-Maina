@@ -179,6 +179,42 @@
                 android:paddingBottom="10dp">
             </androidx.recyclerview.widget.RecyclerView>
 
+
+            <View
+                android:id="@+id/lineFour"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/white"
+                android:layout_below="@id/rv_trailer"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+
+            <TextView
+                android:id="@+id/tv_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Review(s) of the Movie"
+                android:layout_below="@id/lineFour"
+                android:layout_marginLeft="10dp"
+                android:textColor="#fff"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_reviews"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tv_review"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="#fff"
+                android:layout_marginTop="20dp"
+                android:paddingBottom="10dp">
+            </androidx.recyclerview.widget.RecyclerView>
+
         </RelativeLayout>
     </ScrollView>
 
