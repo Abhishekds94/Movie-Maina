@@ -8,13 +8,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.abhishek.moviemania.API.ApiClient;
+import com.abhishek.moviemania.API.ApiInterface;
+import com.abhishek.moviemania.model.Result;
+import com.abhishek.moviemania.model.Trailer;
+import com.abhishek.moviemania.model.TrailerAdapter;
+import com.abhishek.moviemania.model.TrailerResponse;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.abhishek.moviemania.DashboardActivity.API_KEY;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -23,6 +38,11 @@ public class DetailActivity extends AppCompatActivity {
     TextView movieRating;
     TextView movieOverview;
     ImageView movieBackdrop;
+
+    private RecyclerView recyclerView;
+    private TrailerAdapter adapter;
+    private List<Trailer> trailerList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +80,9 @@ public class DetailActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "API data is missing!", Toast.LENGTH_SHORT).show();
         }
+
+        initViews();
+
     }
 
     @Override
@@ -72,4 +95,40 @@ public class DetailActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void initViews(){
+        trailerList = new ArrayList<>();
+        adapter = new TrailerAdapter(this, trailerList);
+
+        recyclerView = (RecyclerView) findViewById(R.id.rv_trailer);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+        loadJSON();
+
+    }
+
+    public void loadJSON(){
+        int movie_id = getIntent().getExtras().getInt("id");
+        ApiInterface apiInterface = ApiClient.getApiClient().create((ApiInterface.class));
+        Call<TrailerResponse> call;
+        call = apiInterface.getTrailers(movie_id,API_KEY);
+        call.enqueue(new Callback<TrailerResponse>() {
+
+            @Override
+            public void onResponse(Call<TrailerResponse> call, Response<TrailerResponse> response) {
+                List<Trailer> trailer = response.body().getResults();
+                recyclerView.setAdapter(new TrailerAdapter(getApplicationContext(), trailer));
+                recyclerView.smoothScrollToPosition(0);
+            }
+
+            @Override
+            public void onFailure(Call<TrailerResponse> call, Throwable t) {
+                Log.e("Error",t.getLocalizedMessage());
+            }
+        });
+    }
+
 }

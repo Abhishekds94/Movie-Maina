@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_weight="1"
+    app:cardCornerRadius="4dp"
+    android:layout_margin="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#4D4C4C">
+
+        <ImageView
+            android:id="@+id/iv_trailer_poster"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:background="#000"/>
+
+        <TextView
+            android:id="@+id/tv_trailer_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginRight="15dp"
+            android:layout_toRightOf="@+id/iv_trailer_poster"
+            android:gravity="center_horizontal"
+            android:maxLines="2"
+            android:text="qwertytasfdjkerngvjkernjgvknerjvkegrkjger"
+            android:textColor="#fff"
+            android:textSize="23sp" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

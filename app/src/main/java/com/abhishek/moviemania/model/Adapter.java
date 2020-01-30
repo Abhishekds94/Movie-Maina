@@ -86,6 +86,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
                         MyDataa clickedDataItem = myDataas.get(pos);
                         Intent intent = new Intent(context, DetailActivity.class);
                         intent.putExtra("title", myDataas.get(pos).gettitle());
+                        intent.putExtra("id", myDataas.get(pos).getId());
                         intent.putExtra("poster_path", myDataas.get(pos).getPoster_path());
                         intent.putExtra("backdrop_path", myDataas.get(pos).getBackdrop_path());
                         intent.putExtra("overview", myDataas.get(pos).getOverview());
