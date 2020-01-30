@@ -1,7 +1,11 @@
 package com.abhishek.moviemania;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -50,10 +54,22 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
         adapter = new Adapter(new ArrayList<MyDataa>(), this);
         Log.e("ada","adapter"+adapter);
         recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+        if(myDataas != null) {
+            myDataas.clear();
+            Log.e("3rd","3rd-"+myDataas);
+        }
         Log.e("RV","RV"+recyclerView);
 
         layoutManager = new LinearLayoutManager(DashboardActivity.this);
-        recyclerView.setLayoutManager((new GridLayoutManager(this, 2)));
+
+        if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        }
+
         recyclerView.setItemAnimator((new DefaultItemAnimator()));
         recyclerView.setNestedScrollingEnabled(false);
 
@@ -90,11 +106,34 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
     }
 
 
+    public Activity getActivity(){
+        Context context = this;
+        while (context instanceof ContextWrapper){
+            if (context instanceof Activity){
+                return (Activity) context;
+            }
+            context = ((ContextWrapper) context).getBaseContext();
+        }
+        return null;
+
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.main_menu, menu);
         return true;
+    }
+
+    public void clearData() {
+
+        int size = myDataas.size();
+        myDataas.clear();
+        adapter.notifyItemRangeRemoved(0, size);
+        adapter = new Adapter(new ArrayList<MyDataa>(), this);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -103,6 +142,11 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
             case R.id.menu_settings:
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
+                if(myDataas != null) {
+                    clearData();
+                    Log.e("---", "=================================================" + myDataas);
+
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -110,7 +154,10 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
     }
 
     public void fetchData(){
-
+        if(myDataas != null) {
+            myDataas.clear();
+            Log.e("3rd","3rd-"+myDataas);
+        }
         ApiInterface apiInterface = ApiClient.getApiClient().create((ApiInterface.class));
         Call<Result> call;
         call = apiInterface.getResult(API_KEY);
@@ -138,6 +185,10 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
     }
 
     public void LoadJson(){
+        if(myDataas != null) {
+            myDataas.clear();
+            Log.e("3rd","3rd-"+myDataas);
+        }
         ApiInterface apiInterface = ApiClient.getApiClient().create((ApiInterface.class));
         Call<Result> call;
         call = apiInterface.getResult(API_KEY);
@@ -147,8 +198,11 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
                 if(response.isSuccessful() && response.body().getResultt() != null) {
                     if(myDataas != null) {
                         myDataas.clear();
+                        Log.e("1st","1st-"+myDataas);
                     }
+                    adapter.notifyDataSetChanged();
                     myDataas = response.body().getResultt();
+                    Log.e("2nd","2nd-"+myDataas);
                     adapter.addAll(myDataas);
                 } else {
                     Toast.makeText(DashboardActivity.this, "No Results Found!!", Toast.LENGTH_SHORT).show();
@@ -164,6 +218,10 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
     }
 
     public void LoadJson1(){
+        if(myDataas != null) {
+            myDataas.clear();
+            Log.e("3rd","3rd-"+myDataas);
+        }
         ApiInterface apiInterface = ApiClient.getApiClient().create((ApiInterface.class));
         Call<Result> call;
         call = apiInterface.getPopular(API_KEY);
@@ -173,8 +231,11 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
                 if(response.isSuccessful() && response.body().getResultt() != null) {
                     if(myDataas != null) {
                         myDataas.clear();
+                        Log.e("3rd","3rd-"+myDataas);
                     }
+                    adapter.notifyDataSetChanged();
                     myDataas = response.body().getResultt();
+                    Log.e("4th","4th-"+myDataas);
                     adapter.addAll(myDataas);
                 } else {
                     Toast.makeText(DashboardActivity.this, "No Results Found!!", Toast.LENGTH_SHORT).show();
@@ -191,6 +252,11 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if(myDataas != null) {
+            myDataas.clear();
+            Log.e("1st","1st-"+myDataas);
+        }
+
         checkSortOrder();
     }
 
@@ -202,10 +268,12 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
                 this.getString(R.string.pref_sort_popular)
         );
         if (sortOrder.equals(this.getString(R.string.pref_sort_popular))){
+
             Log.e("In","In PSP");
             Log.e("pop", "Sorting by most popular"+myDataas);
-            if(myDataas != null){
-                myDataas = null;
+            if(myDataas != null) {
+                myDataas.clear();
+                Log.e("1st","1st-"+myDataas);
             }
             adapter.notifyDataSetChanged();
             LoadJson1();
@@ -213,8 +281,9 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
         } else {
             Log.e("In","In PSP");
             Log.e("top", "Sorting by top"+myDataas);
-            if(myDataas != null){
-                myDataas = null;
+            if(myDataas != null) {
+                myDataas.clear();
+                Log.e("1st","1st-"+myDataas);
             }
             adapter.notifyDataSetChanged();
             LoadJson();
@@ -226,7 +295,10 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
     public void onResume(){
         super.onResume();
         checkSortOrder();
-        myDataas=null;
+        if(myDataas != null) {
+            myDataas.clear();
+            Log.e("1st","1st-"+myDataas);
+        }
 
     }
 

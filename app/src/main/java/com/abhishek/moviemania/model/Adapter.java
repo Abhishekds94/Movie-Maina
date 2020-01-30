@@ -40,7 +40,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         final MyViewHolder holder = myViewHolder;
         final MyDataa model = myDataas.get(i);
-
+        myViewHolder.setIsRecyclable(false);
         Log.i("Response Data - ", "Response Data-"+myDataas);
 
         myViewHolder.mMovieTitle.setText(myDataas.get(i).gettitle());
@@ -63,7 +63,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     public void add(MyDataa myDataa){
         this.myDataas.add(myDataa);
-        notifyItemInserted(myDataas.size()-1);
+        notifyItemInserted(myDataas.size()- myDataas.size());
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
