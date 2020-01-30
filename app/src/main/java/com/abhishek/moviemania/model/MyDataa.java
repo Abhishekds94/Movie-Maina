@@ -8,6 +8,9 @@ public class MyDataa {
     private String title;
     private String backdrop_path;
     private String vote_average;
+    private Integer id;
+    private String overview;
+
 
     public String getVote_average() {
         return vote_average;
@@ -16,9 +19,6 @@ public class MyDataa {
     public void setVote_average(String vote_average) {
         this.vote_average = vote_average;
     }
-
-    private String overview;
-    private Integer id;
 
     public String getTitle() {
         return title;
