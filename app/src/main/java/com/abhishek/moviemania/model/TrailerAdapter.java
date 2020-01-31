@@ -28,8 +28,6 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.MyViewHo
         this.trailerList = trailerList;
     }
 
-
-
     @Override
     public TrailerAdapter.MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
@@ -40,7 +38,6 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.MyViewHo
     @Override
     public void onBindViewHolder(final TrailerAdapter.MyViewHolder viewHolder, int i) {
             viewHolder.title.setText(trailerList.get(i).getName());
-
     }
 
     @Override
