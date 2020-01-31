@@ -1,18 +1,9 @@
 package com.abhishek.moviemania.model;
 
 public class Review {
-    private String id;
+
     private String author;
     private String content;
-
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getAuthor() {
         return author;
@@ -30,8 +21,7 @@ public class Review {
         this.content = content;
     }
 
-    public Review(String id, String author, String content) {
-        this.id = id;
+    public Review(String author, String content) {
         this.author = author;
         this.content = content;
     }

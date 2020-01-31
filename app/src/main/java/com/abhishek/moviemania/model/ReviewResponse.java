@@ -5,8 +5,16 @@ import java.util.List;
 public class ReviewResponse {
 
     private int id_review;
-    private List<Review> reviews;
+    private List<Review> results;
 
+
+    public List<Review> getResults() {
+        return results;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.results = reviews;
+    }
 
     public int getId_review() {
         return id_review;
@@ -16,18 +24,8 @@ public class ReviewResponse {
         this.id_review = id_review;
     }
 
-    public List<Review> getReviews() {
-        return reviews;
+    public ReviewResponse(int id_review) {
+        this.id_review = id_review;
     }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
-
-
-    public ReviewResponse(List<Review> reviews) {
-        this.reviews = reviews;
-    }
-
 
 }

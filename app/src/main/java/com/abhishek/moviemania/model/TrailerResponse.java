@@ -16,7 +16,6 @@ public class TrailerResponse {
         this.results = results;
     }
 
-
     public int getId_trailer() {
         return id_trailer;
     }
@@ -24,7 +23,6 @@ public class TrailerResponse {
     public void setId_trailer(int id_trailer) {
         this.id_trailer = id_trailer;
     }
-
 
     public TrailerResponse(int id_trailer) {
         this.id_trailer = id_trailer;

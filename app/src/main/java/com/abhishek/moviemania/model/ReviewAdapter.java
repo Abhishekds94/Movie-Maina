@@ -17,28 +17,28 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHolder> {
+public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHolder1> {
 
-    private Context mContext;
+    private Context mContext1;
     private List<Review> reviewList;
 
 
-    public ReviewAdapter(Context mContext, List<Review> reviewList){
-        this.mContext = mContext;
+    public ReviewAdapter(Context mContext1, List<Review> reviewList){
+        this.mContext1 = mContext1;
         this.reviewList = reviewList;
     }
 
     @Override
-    public ReviewAdapter.MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.review_card, viewGroup, false);
-        return new ReviewAdapter.MyViewHolder(view);
+    public ReviewAdapter.MyViewHolder1 onCreateViewHolder(ViewGroup viewGroup1, int j) {
+        View view1 = LayoutInflater.from(viewGroup1.getContext())
+                .inflate(R.layout.review_card, viewGroup1, false);
+        return new ReviewAdapter.MyViewHolder1(view1);
     }
 
     @Override
-    public void onBindViewHolder(final ReviewAdapter.MyViewHolder viewHolder, int i) {
-        viewHolder.name.setText(reviewList.get(i).getAuthor());
-        viewHolder.content.setText(reviewList.get(i).getContent());
+    public void onBindViewHolder(final ReviewAdapter.MyViewHolder1 viewHolder1, int j) {
+        viewHolder1.name.setText(reviewList.get(j).getAuthor());
+        viewHolder1.content.setText(reviewList.get(j).getContent());
     }
 
     @Override
@@ -46,15 +46,15 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         return reviewList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder1 extends RecyclerView.ViewHolder{
 
         public TextView name;
         public TextView content;
 
-        public MyViewHolder(View view) {
-            super(view);
-            name = (TextView) view.findViewById(R.id.review_name);
-            content = (TextView) view.findViewById(R.id.review_content);
+        public MyViewHolder1(View view1) {
+            super(view1);
+            name = (TextView) view1.findViewById(R.id.review_name);
+            content = (TextView) view1.findViewById(R.id.review_content);
 
         }
     }
