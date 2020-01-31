@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.abhishek.moviemania">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -27,6 +28,8 @@
 
         <activity android:name=".SettingsActivity"
             android:label="Settings" />
+
+        <activity android:name=".NoInternet"/>
 
     </application>
 
