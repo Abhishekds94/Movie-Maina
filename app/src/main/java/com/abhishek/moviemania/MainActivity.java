@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(Void... params) {
             try {
                 URL strUrl = new URL("http://icons.iconarchive.com/icons/designbolts/handstitch-social/24/Android-icon.png");
-                //Here I have taken one android small icon from server, you can put your own icon on server and access your URL, otherwise icon may removed from another server.
+                //Icon for testing the server
 
                 URLConnection connection = strUrl.openConnection();
                 connection.setDoOutput(true);
