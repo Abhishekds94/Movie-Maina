@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
             navigate();
         }
         else {
-            Toast.makeText(getApplicationContext(), "Internet Not Connected", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(MainActivity.this, NoInternet.class);
             startActivity(intent);
             finish();
@@ -111,22 +110,22 @@ public class MainActivity extends AppCompatActivity {
             {
                 if(result.equals("Fail"))
                 {
-                    Toast.makeText(getApplicationContext(), "Internet Not Active", Toast.LENGTH_LONG).show();
+                    Log.e("Internet Not Active","Internet Not Active");
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(), "Internet Active " + result, Toast.LENGTH_LONG).show();
+                    Log.e("Internet Active","Internet Active"+result);
                 }
             }
             else
             {
-                Toast.makeText(getApplicationContext(), "Internet Not Active", Toast.LENGTH_LONG).show();
+                Log.e("Internet Not Active","Internet Not Active");
             }
         }
 
         @Override
         protected void onPreExecute() {
-            Toast.makeText(getBaseContext(),"Validating Internet",Toast.LENGTH_LONG).show();
+            Log.e("Validating","Validating Internet");
             super.onPreExecute();
         }
     }

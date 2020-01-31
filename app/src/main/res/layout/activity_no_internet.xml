@@ -2,11 +2,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
+    android:background="#F9FCFF">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="My name is Bauer, I like chewing cables. Please check yours and try again!"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:layout_marginTop="60dp"
+        android:textColor="#000"/>
 
     <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/no_internet" />
+
+
+    <ImageButton
+        android:id="@+id/restart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/no_internet"/>
+        android:layout_marginBottom="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/replay"/>
 
 </RelativeLayout>
