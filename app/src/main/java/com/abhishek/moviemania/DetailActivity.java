@@ -44,6 +44,7 @@ public class DetailActivity extends AppCompatActivity {
     private List<Trailer> trailerList;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +72,7 @@ public class DetailActivity extends AppCompatActivity {
             Glide.with(DetailActivity.this)
                     .load(poster)
                     .into(movieBackdrop);
+
 
             movieTitle.setText(title);
             movieReleaseDate.setText(release_date);
