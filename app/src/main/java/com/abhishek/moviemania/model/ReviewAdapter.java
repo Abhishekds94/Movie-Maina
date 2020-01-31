@@ -38,6 +38,9 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
     @Override
     public void onBindViewHolder(final ReviewAdapter.MyViewHolder1 viewHolder1, int j) {
         viewHolder1.name.setText(reviewList.get(j).getAuthor());
+        String letter = reviewList.get(j).getAuthor();
+        String rLetter=letter.substring(0,1);
+        viewHolder1.rLetter.setText(rLetter);
         viewHolder1.content.setText(reviewList.get(j).getContent());
     }
 
@@ -49,11 +52,13 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
     public class MyViewHolder1 extends RecyclerView.ViewHolder{
 
         public TextView name;
+        public TextView rLetter;
         public TextView content;
 
         public MyViewHolder1(View view1) {
             super(view1);
             name = (TextView) view1.findViewById(R.id.review_name);
+            rLetter = (TextView) view1.findViewById(R.id.review_letter);
             content = (TextView) view1.findViewById(R.id.review_content);
 
         }
