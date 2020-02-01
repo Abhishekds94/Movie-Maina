@@ -6,10 +6,6 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-/**
- * Created by delaroy on 9/6/18.
- */
-
 @Entity(tableName = "favoritetable")
 public class FavoriteEntry {
 
