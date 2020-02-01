@@ -20,9 +20,6 @@ public class FavoriteEntry {
     @ColumnInfo(name = "title")
     private String title;
 
-    @ColumnInfo(name = "userrating")
-    private Double userrating;
-
     @ColumnInfo(name = "posterpath")
     private String posterpath;
 
@@ -30,19 +27,17 @@ public class FavoriteEntry {
     private String overview;
 
     @Ignore
-    public FavoriteEntry(int movieid, String title, Double userrating, String posterpath, String overview) {
+    public FavoriteEntry(int movieid, String title, String posterpath, String overview) {
         this.movieid = movieid;
         this.title = title;
-        this.userrating = userrating;
         this.posterpath = posterpath;
         this.overview = overview;
     }
 
-    public FavoriteEntry(int id, int movieid, String title, Double userrating, String posterpath, String overview) {
+    public FavoriteEntry(int id, int movieid, String title, String posterpath, String overview) {
         this.id = id;
         this.movieid = movieid;
         this.title = title;
-        this.userrating = userrating;
         this.posterpath = posterpath;
         this.overview = overview;
     }
@@ -69,14 +64,6 @@ public class FavoriteEntry {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Double getUserrating() {
-        return userrating;
-    }
-
-    public void setUserrating(Double userrating) {
-        this.userrating = userrating;
     }
 
     public void setPosterpath(String posterpath){ this.posterpath = posterpath; }
