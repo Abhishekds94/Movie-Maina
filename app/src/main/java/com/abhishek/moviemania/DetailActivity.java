@@ -1,6 +1,8 @@
 package com.abhishek.moviemania;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -10,6 +12,11 @@ import android.widget.Toast;
 
 import com.abhishek.moviemania.API.ApiClient;
 import com.abhishek.moviemania.API.ApiInterface;
+import com.abhishek.moviemania.ViewModel.AppExecutors;
+import com.abhishek.moviemania.data.FavoriteDbHelper;
+import com.abhishek.moviemania.database.AppDatabase;
+import com.abhishek.moviemania.database.FavoriteEntry;
+import com.abhishek.moviemania.model.MyDataa;
 import com.abhishek.moviemania.model.Result;
 import com.abhishek.moviemania.model.Review;
 import com.abhishek.moviemania.model.ReviewAdapter;
@@ -18,6 +25,8 @@ import com.abhishek.moviemania.model.Trailer;
 import com.abhishek.moviemania.model.TrailerAdapter;
 import com.abhishek.moviemania.model.TrailerResponse;
 import com.bumptech.glide.Glide;
+import com.github.ivbaranov.mfb.MaterialFavoriteButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -51,6 +60,18 @@ public class DetailActivity extends AppCompatActivity {
     private List<Review> reviewList;
 
 
+    private FavoriteDbHelper favoriteDbHelper;
+    private MyDataa favorite;
+    private final AppCompatActivity activity = DetailActivity.this;
+
+    private AppDatabase mDb;
+    List<FavoriteEntry> entries = new ArrayList<>();
+    boolean exists;
+
+    MyDataa movie;
+    String thumbnail, movieName, synopsis, rating, dateOfRelease;
+    int movie_id;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +79,9 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        FavoriteDbHelper dbHelper = new FavoriteDbHelper(this);
+        mDb = AppDatabase.getInstance(getApplicationContext());
 
         movieBackdrop = (ImageView) findViewById(R.id.iv_moviePoster);
         movieTitle = (TextView) findViewById(R.id.tv_movieNameValue);
@@ -92,6 +116,7 @@ public class DetailActivity extends AppCompatActivity {
 
         initViews();
         initViews1();
+        checkStatus(movieName);
 
     }
 
@@ -173,5 +198,81 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    public void saveFavorite(){
+        final FavoriteEntry favoriteEntry = new FavoriteEntry(movie_id, movieName, thumbnail, synopsis);
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.favoriteDao().insertFavorite(favoriteEntry);
+            }
+        });
+    }
+
+    private void deleteFavorite(final int movie_id){
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.favoriteDao().deleteFavoriteWithId(movie_id);
+            }
+        });
+    }
+
+
+    @SuppressLint("StaticFieldLeak")
+    private void checkStatus(final String movieName){
+        final MaterialFavoriteButton materialFavoriteButton = (MaterialFavoriteButton) findViewById(R.id.fav_button);
+        new AsyncTask<Void, Void, Void>(){
+            @Override
+            protected Void doInBackground(Void... params){
+                entries.clear();
+                entries = mDb.favoriteDao().loadAll(movieName);
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void aVoid){
+                super.onPostExecute(aVoid);
+                if (entries.size() > 0){
+                    materialFavoriteButton.setFavorite(true);
+                    materialFavoriteButton.setOnFavoriteChangeListener(
+                            new MaterialFavoriteButton.OnFavoriteChangeListener() {
+                                @Override
+                                public void onFavoriteChanged(MaterialFavoriteButton buttonView, boolean favorite) {
+                                    if (favorite == true) {
+                                        saveFavorite();
+                                        Snackbar.make(buttonView, "Added to Favorite",
+                                                Snackbar.LENGTH_SHORT).show();
+                                    } else {
+                                        deleteFavorite(movie_id);
+                                        Snackbar.make(buttonView, "Removed from Favorite",
+                                                Snackbar.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+
+                }else {
+                    materialFavoriteButton.setOnFavoriteChangeListener(
+                            new MaterialFavoriteButton.OnFavoriteChangeListener() {
+                                @Override
+                                public void onFavoriteChanged(MaterialFavoriteButton buttonView, boolean favorite) {
+                                    if (favorite == true) {
+                                        saveFavorite();
+                                        Snackbar.make(buttonView, "Added to Favorite",
+                                                Snackbar.LENGTH_SHORT).show();
+                                    } else {
+                                        int movie_id = getIntent().getExtras().getInt("id");
+                                        deleteFavorite(movie_id);
+                                        Snackbar.make(buttonView, "Removed from Favorite",
+                                                Snackbar.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                }
+            }
+        }.execute();
+    }
+
 
 }

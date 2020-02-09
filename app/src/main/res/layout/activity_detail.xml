@@ -97,18 +97,15 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <com.like.LikeButton
-                app:icon_type="heart"
-                app:icon_size="25dp"
+            <com.github.ivbaranov.mfb.MaterialFavoriteButton
                 android:id="@+id/fav_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_toRightOf="@id/tv_movieReleaseValue"
                 android:layout_below="@id/tv_movieNameValue"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="10dp"
-                app:liked="false"
-                app:anim_scale_factor="2.5"/>
+                app:mfb_type="heart" />
 
             <View
                 android:id="@+id/lineOne"
