@@ -50,6 +50,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
                 .into(holder.mImageView);
     }
 
+    public void setMyDataas(List<MyDataa> MyDataa) {
+        myDataas = MyDataa;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return myDataas.size();

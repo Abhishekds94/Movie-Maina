@@ -1,11 +1,14 @@
 package com.abhishek.moviemania;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -17,6 +20,9 @@ import android.widget.Toast;
 
 import com.abhishek.moviemania.API.ApiClient;
 import com.abhishek.moviemania.API.ApiInterface;
+import com.abhishek.moviemania.ViewModel.MainViewModel;
+import com.abhishek.moviemania.data.FavoriteDbHelper;
+import com.abhishek.moviemania.database.FavoriteEntry;
 import com.abhishek.moviemania.model.Adapter;
 import com.abhishek.moviemania.model.MyDataa;
 import com.abhishek.moviemania.model.Result;
@@ -25,7 +31,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +43,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.abhishek.moviemania.data.FavoriteDbHelper.getAllFavorite;
 
 public class DashboardActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -250,6 +262,62 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
         checkSortOrder();
     }
 
+
+    private void initViews(){
+        recyclerView = (RecyclerView) findViewById(R.id.rv_dashboard);
+        adapter = new Adapter(new ArrayList<MyDataa>(), this);
+
+        getAllFavorite();
+        Log.e("Fav","Fav ="+getAllFavorite);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+        if(myDataas != null) {
+            myDataas.clear();
+
+        }
+
+        layoutManager = new LinearLayoutManager(DashboardActivity.this);
+
+/*
+        //To set the layout based on orientation - Portrait and Landscape
+        if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        }
+
+        recyclerView.setItemAnimator((new DefaultItemAnimator()));
+        recyclerView.setNestedScrollingEnabled(false);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
+                    isScrolling = true;
+                }
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy){
+                super.onScrolled(recyclerView, dx, dy);
+                if(dy > 0){
+                    final int visibleTreshold = 2;
+                    GridLayoutManager layoutManager = (GridLayoutManager)recyclerView.getLayoutManager();
+                    int lastItem = layoutManager.findFirstCompletelyVisibleItemPosition();
+                    int currentTotalCount = layoutManager.getItemCount();
+
+                    if (currentTotalCount <= lastItem + visibleTreshold){
+                        page_number++;
+                        isScrolling = false;
+                        getAllFavorite();
+                    }
+                }
+            }
+        });*/
+    }
+
     private void checkSortOrder() {
         Log.e("In","In CS");
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -258,22 +326,24 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
                 this.getString(R.string.pref_sort_popular)
         );
         if (sortOrder.equals(this.getString(R.string.pref_sort_popular))){
-
-            Log.e("In","In PSP");
-            Log.e("pop", "Sorting by most popular"+myDataas);
             if(myDataas != null) {
                 myDataas.clear();
-                Log.e("1st","1st-"+myDataas);
             }
             adapter.notifyDataSetChanged();
             LoadJson1();
 
-        } else {
-            Log.e("In","In PSP");
-            Log.e("top", "Sorting by top"+myDataas);
+        } else if (sortOrder.equals(this.getString(R.string.pref_fav))){
             if(myDataas != null) {
                 myDataas.clear();
-                Log.e("1st","1st-"+myDataas);
+            }
+            adapter.notifyDataSetChanged();
+            Log.e("Here", "Heere0");
+            initViews();
+        }
+
+        else {
+            if(myDataas != null) {
+                myDataas.clear();
             }
             adapter.notifyDataSetChanged();
             LoadJson();
@@ -291,4 +361,27 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
 
     }
 
+    @SuppressLint("StaticFieldLeak")
+    private void getAllFavorite(){
+
+        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        viewModel.getFavorite().observe(this, new Observer<List<FavoriteEntry>>() {
+            @Override
+            public void onChanged(@Nullable List<FavoriteEntry> imageEntries) {
+                List<MyDataa> myDataas = new ArrayList<>();
+                for (FavoriteEntry entry : imageEntries){
+                    MyDataa myDataa = new MyDataa();
+                    myDataa.setId(entry.getMovieid());
+                    myDataa.setOverview(entry.getOverview());
+                    myDataa.setTitle(entry.getTitle());
+                    myDataa.setPoster_path(entry.getPosterpath());
+
+
+                    adapter.addAll(myDataas);
+                }
+
+                adapter.setMyDataas(myDataas);
+            }
+        });
+    }
 }

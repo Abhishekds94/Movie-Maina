@@ -1,8 +1,5 @@
 package com.abhishek.moviemania;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -13,7 +10,8 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -40,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         checkInternetAvailibility();
     }
 
-    public void navigate(){
+    public void navigate() {
         new Handler().postDelayed(new Runnable() {
 
             @Override
@@ -52,14 +50,11 @@ public class MainActivity extends AppCompatActivity {
         }, SPLASH_TIME_OUT);
     }
 
-    public void checkInternetAvailibility()
-    {
-        if(isInternetAvailable())
-        {
+    public void checkInternetAvailibility() {
+        if (isInternetAvailable()) {
             new IsInternetActive().execute();
             navigate();
-        }
-        else {
+        } else {
             Intent intent = new Intent(MainActivity.this, NoInternet.class);
             startActivity(intent);
             finish();
@@ -75,13 +70,12 @@ public class MainActivity extends AppCompatActivity {
             return activeNetworkInfo != null && activeNetworkInfo.isConnected();
         } catch (Exception e) {
 
-            Log.e("isInternetAvailable:",e.toString());
+            Log.e("isInternetAvailable:", e.toString());
             return false;
         }
     }
 
-    class IsInternetActive extends AsyncTask<Void, Void, String>
-    {
+    class IsInternetActive extends AsyncTask<Void, Void, String> {
         InputStream is = null;
         String json = "Fail";
 
@@ -93,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
                 URLConnection connection = strUrl.openConnection();
                 connection.setDoOutput(true);
-                is =  connection.getInputStream();
+                is = connection.getInputStream();
                 json = "Success";
 
             } catch (Exception e) {
@@ -106,26 +100,20 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            if (result != null)
-            {
-                if(result.equals("Fail"))
-                {
-                    Log.e("Internet Not Active","Internet Not Active");
+            if (result != null) {
+                if (result.equals("Fail")) {
+                    Log.e("Internet Not Active", "Internet Not Active");
+                } else {
+                    Log.e("Internet Active", "Internet Active" + result);
                 }
-                else
-                {
-                    Log.e("Internet Active","Internet Active"+result);
-                }
-            }
-            else
-            {
-                Log.e("Internet Not Active","Internet Not Active");
+            } else {
+                Log.e("Internet Not Active", "Internet Not Active");
             }
         }
 
         @Override
         protected void onPreExecute() {
-            Log.e("Validating","Validating Internet");
+            Log.e("Validating", "Validating Internet");
             super.onPreExecute();
         }
     }

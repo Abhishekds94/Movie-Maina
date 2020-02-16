@@ -78,7 +78,7 @@ public class MyDataa {
         this.poster_path = poster_path;
     }
 
-    public MyDataa(String poster_path, String backdrop_path){
+    public MyDataa(){
         this.poster_path = poster_path;
         this.backdrop_path = backdrop_path;
     }

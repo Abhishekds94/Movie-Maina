@@ -10,6 +10,7 @@ import android.util.Log;
 import com.abhishek.moviemania.model.MyDataa;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static android.icu.text.MessagePattern.ArgType.SELECT;
@@ -21,6 +22,7 @@ public class FavoriteDbHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     public static final String LOGTAG = "FAVORITE";
+    public static Collection<? extends MyDataa> getAllFavorite;
 
     SQLiteOpenHelper dbhandler;
     SQLiteDatabase db;
@@ -102,10 +104,21 @@ public class FavoriteDbHelper extends SQLiteOpenHelper {
                 null,
                 sortOrder);
 
+        if (cursor.moveToFirst()) {
+            do {
+                MyDataa mydataa = new MyDataa();
+                mydataa.setId((Integer.parseInt(String.valueOf(cursor.getColumnIndex(FavoriteContract.FavoriteEntry.COLUMN_MOVIEID)))));
+                mydataa.setTitle(cursor.getString(cursor.getColumnIndex(FavoriteContract.FavoriteEntry.COLUMN_TITLE)));
+                mydataa.setPoster_path(cursor.getString(cursor.getColumnIndex(FavoriteContract.FavoriteEntry.COLUMN_POSTER_PATH)));
+                mydataa.setOverview(cursor.getString(cursor.getColumnIndex(FavoriteContract.FavoriteEntry.COLUMN_PLOT_SYNOPSIS)));
+
+                favoriteList.add(mydataa);
+            } while (cursor.moveToNext());
+        }
         cursor.close();
         db.close();
-        
+
         return favoriteList;
+        }
     }
 
-}

@@ -1,6 +1,5 @@
 package com.abhishek.moviemania.database;
 
-
 import android.content.Context;
 import android.util.Log;
 
