@@ -2,10 +2,12 @@ package com.abhishek.moviemania;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -241,10 +243,24 @@ public class DetailActivity extends AppCompatActivity {
                     materialFavoriteButton.setOnFavoriteChangeListener((buttonView, favorite) -> {
                         if (favorite) {
                             saveFavorite();
-                            Snackbar.make(buttonView, "Added to Favorite", Snackbar.LENGTH_SHORT).show();
+                            Snackbar snackbar = Snackbar
+                                    .make(buttonView, "Added to Favorite", Snackbar.LENGTH_LONG);
+                            View snackbarView = snackbar.getView();
+                            snackbarView.setBackgroundColor(Color.parseColor("#8C251D"));
+                            TextView tv = (TextView) snackbarView.findViewById(R.id.snackbar_text);
+                            tv.setTextColor(Color.BLACK);
+                            snackbar.show();
+
                         } else {
                             deleteFavorite(movie_id);
-                            Snackbar.make(buttonView, "Removed from Favorite", Snackbar.LENGTH_SHORT).show();
+
+                            Snackbar snackbar = Snackbar
+                                    .make(buttonView, "Removed from Favorite", Snackbar.LENGTH_LONG);
+                            View snackbarView = snackbar.getView();
+                            snackbarView.setBackgroundColor(Color.parseColor("#1A237E"));
+                            TextView tv = (TextView) snackbarView.findViewById(R.id.snackbar_text);
+                            tv.setTextColor(Color.WHITE);
+                            snackbar.show();
                         }
                     });
 

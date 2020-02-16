@@ -108,7 +108,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_toEndOf="@id/tv_movieReleaseValue"
                 android:layout_toRightOf="@id/tv_movieReleaseValue"
-                app:mfb_type="heart" />
+                app:mfb_type="heart"
+                app:mfb_color="white"/>
 
             <View
                 android:id="@+id/lineOne"
