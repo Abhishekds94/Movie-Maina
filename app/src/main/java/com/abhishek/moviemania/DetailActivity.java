@@ -210,6 +210,7 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void run() {
                 mDb.favoriteDao().insertFavorite(favoriteEntry);
+                Log.e("FE","Fave En"+favoriteEntry);
             }
         });
     }
@@ -243,6 +244,7 @@ public class DetailActivity extends AppCompatActivity {
                     materialFavoriteButton.setOnFavoriteChangeListener((buttonView, favorite) -> {
                         if (favorite) {
                             saveFavorite();
+                            Log.e("SF","SAved fav"+favorite);
                             Snackbar snackbar = Snackbar
                                     .make(buttonView, "Added to Favorite", Snackbar.LENGTH_LONG);
                             View snackbarView = snackbar.getView();
