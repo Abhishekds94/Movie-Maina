@@ -28,18 +28,5 @@
         android:textSize="45sp"
         android:textStyle="bold"/>
 
-    <TextView
-        android:id="@+id/tv_splash_about"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="A project of Udacity Nano Degree Course"
-        android:layout_marginBottom="30dp"
-        android:layout_centerHorizontal="true"
-        android:textSize="16sp"
-        android:textColor="#000"/>
-
-
-
 
 </RelativeLayout>
