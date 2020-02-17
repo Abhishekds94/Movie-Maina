@@ -11,5 +11,8 @@ public class FavoriteContract {
         public static final String COLUMN_TITLE = "title";
         public static final String COLUMN_POSTER_PATH = "posterpath";
         public static final String COLUMN_PLOT_SYNOPSIS = "overview";
+        public static final String COLUMN_PLOT_RATING = "vote_average";
+        public static final String COLUMN_PLOT_RELEASE = "release";
+        public static final String COLUMN_BACKDROP_PATH = "backdroppath";
     }
 }

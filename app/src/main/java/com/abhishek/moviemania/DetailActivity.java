@@ -35,10 +35,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
-<<<<<<< HEAD
 import java.util.Objects;
-=======
->>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -72,7 +69,7 @@ public class DetailActivity extends AppCompatActivity {
     boolean exists;
 
     MyDataa movie;
-    String thumbnail, movieName, synopsis, rating, dateOfRelease;
+    String thumbnail, movieName, synopsis, backdrop, rating, dateOfRelease;
     int movie_id;
 
 
@@ -93,11 +90,11 @@ public class DetailActivity extends AppCompatActivity {
         movieOverview = findViewById(R.id.tv_plotValue);
 
         Intent intentThisActivity = getIntent();
-<<<<<<< HEAD
 
-=======
->>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
         if (intentThisActivity.hasExtra("title")) {
+
+            String posterImg = getIntent().getExtras().getString("poster_path");
+            Log.e("PP", "Poster path"+posterImg);
 
             String backDrop = getIntent().getExtras().getString("backdrop_path");
             String title = getIntent().getExtras().getString("title");
@@ -111,23 +108,24 @@ public class DetailActivity extends AppCompatActivity {
                     .load(poster)
                     .into(movieBackdrop);
 
-<<<<<<< HEAD
-=======
+            String backdropImg = "https://image.tmdb.org/t/p/w500" + posterImg;
 
->>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
+            Glide.with(DetailActivity.this)
+                    .load(poster)
+                    .into(movieBackdrop);
+
             movieTitle.setText(title);
             movieReleaseDate.setText(release_date);
             movieRating.setText(vote + "/10");
             movieOverview.setText(overview);
-<<<<<<< HEAD
 
-=======
-            
->>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
             /* Here is we are saving details for database*/
             movieName = title;
-            thumbnail = poster;
-            synopsis=overview;
+            thumbnail = backdropImg;
+            synopsis = overview;
+            rating = vote;
+            dateOfRelease = release_date;
+            backdrop = poster;
 
         } else {
             Toast.makeText(this, "API data is missing!", Toast.LENGTH_SHORT).show();
@@ -198,13 +196,9 @@ public class DetailActivity extends AppCompatActivity {
 
     public void loadReviews() {
         Log.e("In IR", "IR");
-<<<<<<< HEAD
         Intent intent = getIntent();
         movie_id  = intent.getIntExtra("id",10);
         Log.e("Movie ID ,",String.valueOf(movie_id));
-=======
-        int movie_id = getIntent().getExtras().getInt("id");
->>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
         ApiInterface apiInterface = ApiClient.getApiClient().create((ApiInterface.class));
         Call<ReviewResponse> call;
         call = apiInterface.getReviews(movie_id, API_KEY);
@@ -215,10 +209,7 @@ public class DetailActivity extends AppCompatActivity {
                 List<Review> reviews = response.body().getResults();
                 recyclerView1.setAdapter(new ReviewAdapter(getApplicationContext(), reviews));
                 recyclerView1.smoothScrollToPosition(0);
-<<<<<<< HEAD
                 Log.e("ff",response.body().toString());
-=======
->>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
             }
 
             @Override
@@ -230,12 +221,10 @@ public class DetailActivity extends AppCompatActivity {
 
 
     public void saveFavorite() {
-<<<<<<< HEAD
         Log.e("Thunm",thumbnail);
+        Log.e("BD",backdrop);
         Log.e("Movie ID",String.valueOf(movie_id));
-=======
->>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
-        final FavoriteEntry favoriteEntry = new FavoriteEntry(movie_id, movieName, thumbnail, synopsis);
+        final FavoriteEntry favoriteEntry = new FavoriteEntry(movie_id, movieName, thumbnail, synopsis, rating, dateOfRelease, backdrop);
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
@@ -304,13 +293,23 @@ public class DetailActivity extends AppCompatActivity {
                                 public void onFavoriteChanged(MaterialFavoriteButton buttonView, boolean favorite) {
                                     if (favorite == true) {
                                         saveFavorite();
-                                        Snackbar.make(buttonView, "Added to Favorite",
-                                                Snackbar.LENGTH_SHORT).show();
+                                        Snackbar snackbar = Snackbar
+                                                .make(buttonView, "Added to Favorite", Snackbar.LENGTH_LONG);
+                                        View snackbarView = snackbar.getView();
+                                        snackbarView.setBackgroundColor(Color.parseColor("#8C251D"));
+                                        TextView tv = (TextView) snackbarView.findViewById(R.id.snackbar_text);
+                                        tv.setTextColor(Color.BLACK);
+                                        snackbar.show();
                                     } else {
                                         int movie_id = getIntent().getExtras().getInt("id");
                                         deleteFavorite(movie_id);
-                                        Snackbar.make(buttonView, "Removed from Favorite",
-                                                Snackbar.LENGTH_SHORT).show();
+                                        Snackbar snackbar = Snackbar
+                                                .make(buttonView, "Removed from Favorite", Snackbar.LENGTH_LONG);
+                                        View snackbarView = snackbar.getView();
+                                        snackbarView.setBackgroundColor(Color.parseColor("#1A237E"));
+                                        TextView tv = (TextView) snackbarView.findViewById(R.id.snackbar_text);
+                                        tv.setTextColor(Color.WHITE);
+                                        snackbar.show();
                                     }
                                 }
                             });
