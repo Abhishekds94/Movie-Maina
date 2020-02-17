@@ -335,12 +335,13 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
                     MyDataa myDataa = new MyDataa();
                     myDataa.setId(entry.getMovieid());
                     Log.e("Moie ID ",String.valueOf(entry.getMovieid()));
+                    Log.e("Moie BacD ",String.valueOf(entry.getBackdrop_path()));
                     myDataa.setOverview(entry.getOverview());
                     myDataa.setTitle(entry.getTitle());
                     myDataa.setPoster_path(entry.getPosterpath());
                     myDataa.setRelease_date(entry.getRelease_date());
                     myDataa.setPoster_path("f"+entry.getPosterpath());
-                    myDataa.setVote_average(entry.getRelease_date());
+                    myDataa.setVote_average(entry.getVote_average());
                     myDataa.setBackdrop_path(entry.getBackdrop_path());
                     myDataas.add(myDataa);
                     adapter.notifyDataSetChanged();

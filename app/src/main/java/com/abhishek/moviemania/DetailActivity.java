@@ -69,7 +69,7 @@ public class DetailActivity extends AppCompatActivity {
     boolean exists;
 
     MyDataa movie;
-    String thumbnail, movieName, synopsis, backdrop, rating, dateOfRelease;
+    String thumbnail, movieName, synopsis, rating, dateOfRelease, backdrop;
     int movie_id;
 
 
@@ -94,15 +94,15 @@ public class DetailActivity extends AppCompatActivity {
         if (intentThisActivity.hasExtra("title")) {
 
             String posterImg = getIntent().getExtras().getString("poster_path");
-            Log.e("PP", "Poster path"+posterImg);
 
-            String backDrop = getIntent().getExtras().getString("backdrop_path");
             String title = getIntent().getExtras().getString("title");
             String overview = getIntent().getExtras().getString("overview");
             String vote = getIntent().getExtras().getString("vote_average");
             String release_date = getIntent().getExtras().getString("release_date");
+            String backDrop = getIntent().getExtras().getString("backdrop_path");
 
             String poster = "https://image.tmdb.org/t/p/w500" + backDrop;
+            String poster1 = " https://image.tmdb.org/t/p/w500/"+backDrop;
 
             Glide.with(DetailActivity.this)
                     .load(poster)
@@ -123,9 +123,10 @@ public class DetailActivity extends AppCompatActivity {
             movieName = title;
             thumbnail = backdropImg;
             synopsis = overview;
-            rating = vote;
+            rating = backDrop;
             dateOfRelease = release_date;
-            backdrop = poster;
+            backdrop = vote;
+            Log.e("BD IMG","BD IMG"+backdrop);
 
         } else {
             Toast.makeText(this, "API data is missing!", Toast.LENGTH_SHORT).show();
@@ -224,6 +225,8 @@ public class DetailActivity extends AppCompatActivity {
         Log.e("Thunm",thumbnail);
         Log.e("BD",backdrop);
         Log.e("Movie ID",String.valueOf(movie_id));
+        Log.e("rating",rating);
+        Log.e("dateOfRelease",dateOfRelease);
         final FavoriteEntry favoriteEntry = new FavoriteEntry(movie_id, movieName, thumbnail, synopsis, rating, dateOfRelease, backdrop);
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
@@ -274,7 +277,6 @@ public class DetailActivity extends AppCompatActivity {
 
                         } else {
                             deleteFavorite(movie_id);
-
                             Snackbar snackbar = Snackbar
                                     .make(buttonView, "Removed from Favorite", Snackbar.LENGTH_LONG);
                             View snackbarView = snackbar.getView();

@@ -104,14 +104,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
                         Log.e("ID : ",String.valueOf(myDataas.get(pos).getId()));
                         Intent intent = new Intent(context, DetailActivity.class);
                         Log.e("c",String.valueOf(clickedDataItem.getId()));
+                        Log.e("cBD",String.valueOf(clickedDataItem.getBackdrop_path()));
                         intent.putExtra("title", clickedDataItem.gettitle());
                         //intent.putExtra("id", Integer.valueOf(myDataas.get(pos).getId()));
                         intent.putExtra("id", Integer.valueOf(clickedDataItem.getId()));
                         intent.putExtra("poster_path", clickedDataItem.getPoster_path());
-                        intent.putExtra("backdrop_path", clickedDataItem.getBackdrop_path());
                         intent.putExtra("overview", clickedDataItem.getOverview());
                         intent.putExtra("vote_average", clickedDataItem.getVote_average());
                         intent.putExtra("release_date", clickedDataItem.getRelease_date());
+                        intent.putExtra("backdrop_path", clickedDataItem.getBackdrop_path());
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
                         Toast.makeText(v.getContext(),"You clicked " + clickedDataItem.getTitle(), Toast.LENGTH_SHORT).show();

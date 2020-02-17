@@ -13,6 +13,6 @@ public class FavoriteContract {
         public static final String COLUMN_PLOT_SYNOPSIS = "overview";
         public static final String COLUMN_PLOT_RATING = "vote_average";
         public static final String COLUMN_PLOT_RELEASE = "release";
-        public static final String COLUMN_BACKDROP_PATH = "backdroppath";
+        public static final String COLUMN_BACKDROP_PATH = "backdrop_path";
     }
 }
