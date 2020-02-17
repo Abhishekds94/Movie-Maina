@@ -23,9 +23,14 @@ public class MainViewModel extends AndroidViewModel {
         AppDatabase database = AppDatabase.getInstance(this.getApplication());
         Log.d(TAG, "Actively retrieving the tasks from the DataBase");
         favorite = database.favoriteDao().loadAllFavorite();
-    }
 
+    }
     public LiveData<List<FavoriteEntry>> getFavorite() {
-        return favorite;
+        if (favorite == null){
+            Log.e("N","Null from database");
+        }else{
+            return favorite;
+        }
+        return null;
     }
 }

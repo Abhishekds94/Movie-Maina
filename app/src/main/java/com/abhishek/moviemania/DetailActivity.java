@@ -35,6 +35,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -89,6 +90,7 @@ public class DetailActivity extends AppCompatActivity {
         movieOverview = findViewById(R.id.tv_plotValue);
 
         Intent intentThisActivity = getIntent();
+
         if (intentThisActivity.hasExtra("title")) {
 
             String backDrop = getIntent().getExtras().getString("backdrop_path");
@@ -103,12 +105,11 @@ public class DetailActivity extends AppCompatActivity {
                     .load(poster)
                     .into(movieBackdrop);
 
-
             movieTitle.setText(title);
             movieReleaseDate.setText(release_date);
             movieRating.setText(vote + "/10");
             movieOverview.setText(overview);
-            
+
             /* Here is we are saving details for database*/
             movieName = title;
             thumbnail = poster;
@@ -183,7 +184,9 @@ public class DetailActivity extends AppCompatActivity {
 
     public void loadReviews() {
         Log.e("In IR", "IR");
-        int movie_id = getIntent().getExtras().getInt("id");
+        Intent intent = getIntent();
+        movie_id  = intent.getIntExtra("id",10);
+        Log.e("Movie ID ,",String.valueOf(movie_id));
         ApiInterface apiInterface = ApiClient.getApiClient().create((ApiInterface.class));
         Call<ReviewResponse> call;
         call = apiInterface.getReviews(movie_id, API_KEY);
@@ -194,6 +197,7 @@ public class DetailActivity extends AppCompatActivity {
                 List<Review> reviews = response.body().getResults();
                 recyclerView1.setAdapter(new ReviewAdapter(getApplicationContext(), reviews));
                 recyclerView1.smoothScrollToPosition(0);
+                Log.e("ff",response.body().toString());
             }
 
             @Override
@@ -205,6 +209,8 @@ public class DetailActivity extends AppCompatActivity {
 
 
     public void saveFavorite() {
+        Log.e("Thunm",thumbnail);
+        Log.e("Movie ID",String.valueOf(movie_id));
         final FavoriteEntry favoriteEntry = new FavoriteEntry(movie_id, movieName, thumbnail, synopsis);
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override

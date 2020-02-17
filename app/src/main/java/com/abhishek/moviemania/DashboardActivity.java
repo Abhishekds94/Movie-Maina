@@ -11,6 +11,7 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,6 +34,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
@@ -51,11 +53,11 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
     public static final String API_KEY = "b9227e455238e6a36dc7deddd582f0b2";
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private Adapter adapter;
-    private List<MyDataa> myDataas;
+    private Adapter adapter,favAdapter;
+    private List<MyDataa> myDataas = new ArrayList<>();
     private int page_number=1;
     Boolean isScrolling = true;
-
+    boolean isFav = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +100,7 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy){
                 super.onScrolled(recyclerView, dx, dy);
-                if(dy > 0){
+                if(dy > 0 & !isFav){
                     final int visibleTreshold = 2;
                     GridLayoutManager layoutManager = (GridLayoutManager)recyclerView.getLayoutManager();
                     int lastItem = layoutManager.findFirstCompletelyVisibleItemPosition();
@@ -262,20 +264,17 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
         checkSortOrder();
     }
 
-
     private void initViews(){
+
+        if (myDataas != null)myDataas.clear();
+        isFav = true;
         recyclerView = (RecyclerView) findViewById(R.id.rv_dashboard);
-        adapter = new Adapter(new ArrayList<MyDataa>(), this);
-
+        adapter = new Adapter(myDataas, this);
         getAllFavorite();
-        Log.e("Fav","Fav ="+getAllFavorite);
         recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
 
-        if(myDataas != null) {
-            myDataas.clear();
+       // Log.e("Fav","Fav ="+getAllFavorite);
 
-        }
 
         layoutManager = new LinearLayoutManager(DashboardActivity.this);
 
@@ -329,6 +328,7 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
             if(myDataas != null) {
                 myDataas.clear();
             }
+            isFav = false;
             adapter.notifyDataSetChanged();
             LoadJson1();
 
@@ -336,15 +336,16 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
             if(myDataas != null) {
                 myDataas.clear();
             }
-            adapter.notifyDataSetChanged();
-            Log.e("Here", "Heere0");
             initViews();
+            Log.e("Here", "Heere0");
+
         }
 
         else {
             if(myDataas != null) {
                 myDataas.clear();
             }
+            isFav = false;
             adapter.notifyDataSetChanged();
             LoadJson();
 
@@ -362,25 +363,24 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
     }
 
     @SuppressLint("StaticFieldLeak")
-    private void getAllFavorite(){
-
-        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+    private  void getAllFavorite(){
+        MainViewModel viewModel = new MainViewModel(getApplication());
         viewModel.getFavorite().observe(this, new Observer<List<FavoriteEntry>>() {
             @Override
             public void onChanged(@Nullable List<FavoriteEntry> imageEntries) {
-                List<MyDataa> myDataas = new ArrayList<>();
+                Log.e("List Len",String.valueOf(imageEntries.size()));
                 for (FavoriteEntry entry : imageEntries){
                     MyDataa myDataa = new MyDataa();
                     myDataa.setId(entry.getMovieid());
+                    Log.e("Moie ID ",String.valueOf(entry.getMovieid()));
                     myDataa.setOverview(entry.getOverview());
                     myDataa.setTitle(entry.getTitle());
-                    myDataa.setPoster_path(entry.getPosterpath());
-
-
-                    adapter.addAll(myDataas);
+                    myDataa.setPoster_path("f"+entry.getPosterpath());
+                    myDataas.add(myDataa);
+                    adapter.notifyDataSetChanged();
                 }
 
-                adapter.setMyDataas(myDataas);
+                //adapter.setMyDataas(myDataas);
             }
         });
     }

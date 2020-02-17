@@ -45,9 +45,21 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
         myViewHolder.mMovieTitle.setText(myDataas.get(i).gettitle());
 
-        Glide.with(context)
-                .load("https://image.tmdb.org/t/p/w500" + String.valueOf(model.getPoster_path()))
-                .into(holder.mImageView);
+        String xc = model.getPoster_path();
+        char [] c_ = xc.toCharArray();
+        if (c_[0] == 'f'){
+            String x = "";
+            for (int aa = 1; aa < c_.length; aa++){
+                x += c_[aa];
+            }
+            Glide.with(context)
+                    .load(x)
+                    .into(holder.mImageView);
+        }else{
+            Glide.with(context)
+                    .load("https://image.tmdb.org/t/p/w500" + String.valueOf(model.getPoster_path()))
+                    .into(holder.mImageView);
+        }
     }
 
     public void setMyDataas(List<MyDataa> MyDataa) {
@@ -89,14 +101,17 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
                     int pos = getAdapterPosition();
                     if (pos!= RecyclerView.NO_POSITION){
                         MyDataa clickedDataItem = myDataas.get(pos);
+                        Log.e("ID : ",String.valueOf(myDataas.get(pos).getId()));
                         Intent intent = new Intent(context, DetailActivity.class);
-                        intent.putExtra("title", myDataas.get(pos).gettitle());
-                        intent.putExtra("id", myDataas.get(pos).getId());
-                        intent.putExtra("poster_path", myDataas.get(pos).getPoster_path());
-                        intent.putExtra("backdrop_path", myDataas.get(pos).getBackdrop_path());
-                        intent.putExtra("overview", myDataas.get(pos).getOverview());
-                        intent.putExtra("vote_average", myDataas.get(pos).getVote_average());
-                        intent.putExtra("release_date", myDataas.get(pos).getRelease_date());
+                        Log.e("c",String.valueOf(clickedDataItem.getId()));
+                        intent.putExtra("title", clickedDataItem.gettitle());
+                        //intent.putExtra("id", Integer.valueOf(myDataas.get(pos).getId()));
+                        intent.putExtra("id", Integer.valueOf(clickedDataItem.getId()));
+                        intent.putExtra("poster_path", clickedDataItem.getPoster_path());
+                        intent.putExtra("backdrop_path", clickedDataItem.getBackdrop_path());
+                        intent.putExtra("overview", clickedDataItem.getOverview());
+                        intent.putExtra("vote_average", clickedDataItem.getVote_average());
+                        intent.putExtra("release_date", clickedDataItem.getRelease_date());
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
                         Toast.makeText(v.getContext(),"You clicked " + clickedDataItem.getTitle(), Toast.LENGTH_SHORT).show();
