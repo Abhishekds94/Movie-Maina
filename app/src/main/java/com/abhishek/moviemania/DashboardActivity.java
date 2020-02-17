@@ -11,7 +11,10 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+<<<<<<< HEAD
 import android.provider.ContactsContract;
+=======
+>>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,7 +37,10 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+<<<<<<< HEAD
 import androidx.lifecycle.LiveData;
+=======
+>>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
@@ -53,11 +59,19 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
     public static final String API_KEY = "b9227e455238e6a36dc7deddd582f0b2";
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
+<<<<<<< HEAD
     private Adapter adapter,favAdapter;
     private List<MyDataa> myDataas = new ArrayList<>();
     private int page_number=1;
     Boolean isScrolling = true;
     boolean isFav = false;
+=======
+    private Adapter adapter;
+    private List<MyDataa> myDataas;
+    private int page_number=1;
+    Boolean isScrolling = true;
+
+>>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +114,11 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy){
                 super.onScrolled(recyclerView, dx, dy);
+<<<<<<< HEAD
                 if(dy > 0 & !isFav){
+=======
+                if(dy > 0){
+>>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
                     final int visibleTreshold = 2;
                     GridLayoutManager layoutManager = (GridLayoutManager)recyclerView.getLayoutManager();
                     int lastItem = layoutManager.findFirstCompletelyVisibleItemPosition();
@@ -264,6 +282,7 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
         checkSortOrder();
     }
 
+<<<<<<< HEAD
     private void initViews(){
 
         if (myDataas != null)myDataas.clear();
@@ -275,6 +294,22 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
 
        // Log.e("Fav","Fav ="+getAllFavorite);
 
+=======
+
+    private void initViews(){
+        recyclerView = (RecyclerView) findViewById(R.id.rv_dashboard);
+        adapter = new Adapter(new ArrayList<MyDataa>(), this);
+
+        getAllFavorite();
+        Log.e("Fav","Fav ="+getAllFavorite);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+        if(myDataas != null) {
+            myDataas.clear();
+
+        }
+>>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
 
         layoutManager = new LinearLayoutManager(DashboardActivity.this);
 
@@ -328,7 +363,10 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
             if(myDataas != null) {
                 myDataas.clear();
             }
+<<<<<<< HEAD
             isFav = false;
+=======
+>>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
             adapter.notifyDataSetChanged();
             LoadJson1();
 
@@ -336,16 +374,25 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
             if(myDataas != null) {
                 myDataas.clear();
             }
+<<<<<<< HEAD
             initViews();
             Log.e("Here", "Heere0");
 
+=======
+            adapter.notifyDataSetChanged();
+            Log.e("Here", "Heere0");
+            initViews();
+>>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
         }
 
         else {
             if(myDataas != null) {
                 myDataas.clear();
             }
+<<<<<<< HEAD
             isFav = false;
+=======
+>>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
             adapter.notifyDataSetChanged();
             LoadJson();
 
@@ -363,6 +410,7 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
     }
 
     @SuppressLint("StaticFieldLeak")
+<<<<<<< HEAD
     private  void getAllFavorite(){
         MainViewModel viewModel = new MainViewModel(getApplication());
         viewModel.getFavorite().observe(this, new Observer<List<FavoriteEntry>>() {
@@ -381,6 +429,26 @@ public class DashboardActivity extends AppCompatActivity implements SharedPrefer
                 }
 
                 //adapter.setMyDataas(myDataas);
+=======
+    private void getAllFavorite(){
+
+        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        viewModel.getFavorite().observe(this, new Observer<List<FavoriteEntry>>() {
+            @Override
+            public void onChanged(@Nullable List<FavoriteEntry> imageEntries) {
+                List<MyDataa> myDataas = new ArrayList<>();
+                for (FavoriteEntry entry : imageEntries){
+                    MyDataa myDataa = new MyDataa();
+                    myDataa.setId(entry.getMovieid());
+                    myDataa.setOverview(entry.getOverview());
+                    myDataa.setTitle(entry.getTitle());
+                    myDataa.setPoster_path(entry.getPosterpath());
+                    
+                    adapter.addAll(myDataas);
+                }
+
+                adapter.setMyDataas(myDataas);
+>>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
             }
         });
     }

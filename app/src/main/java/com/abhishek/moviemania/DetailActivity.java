@@ -35,7 +35,10 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Objects;
+=======
+>>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -90,7 +93,10 @@ public class DetailActivity extends AppCompatActivity {
         movieOverview = findViewById(R.id.tv_plotValue);
 
         Intent intentThisActivity = getIntent();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
         if (intentThisActivity.hasExtra("title")) {
 
             String backDrop = getIntent().getExtras().getString("backdrop_path");
@@ -105,11 +111,19 @@ public class DetailActivity extends AppCompatActivity {
                     .load(poster)
                     .into(movieBackdrop);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
             movieTitle.setText(title);
             movieReleaseDate.setText(release_date);
             movieRating.setText(vote + "/10");
             movieOverview.setText(overview);
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
             /* Here is we are saving details for database*/
             movieName = title;
             thumbnail = poster;
@@ -184,9 +198,13 @@ public class DetailActivity extends AppCompatActivity {
 
     public void loadReviews() {
         Log.e("In IR", "IR");
+<<<<<<< HEAD
         Intent intent = getIntent();
         movie_id  = intent.getIntExtra("id",10);
         Log.e("Movie ID ,",String.valueOf(movie_id));
+=======
+        int movie_id = getIntent().getExtras().getInt("id");
+>>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
         ApiInterface apiInterface = ApiClient.getApiClient().create((ApiInterface.class));
         Call<ReviewResponse> call;
         call = apiInterface.getReviews(movie_id, API_KEY);
@@ -197,7 +215,10 @@ public class DetailActivity extends AppCompatActivity {
                 List<Review> reviews = response.body().getResults();
                 recyclerView1.setAdapter(new ReviewAdapter(getApplicationContext(), reviews));
                 recyclerView1.smoothScrollToPosition(0);
+<<<<<<< HEAD
                 Log.e("ff",response.body().toString());
+=======
+>>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
             }
 
             @Override
@@ -209,8 +230,11 @@ public class DetailActivity extends AppCompatActivity {
 
 
     public void saveFavorite() {
+<<<<<<< HEAD
         Log.e("Thunm",thumbnail);
         Log.e("Movie ID",String.valueOf(movie_id));
+=======
+>>>>>>> 6b053b7e2a6f79ced25b5d1a76bf80ebe46c44f3
         final FavoriteEntry favoriteEntry = new FavoriteEntry(movie_id, movieName, thumbnail, synopsis);
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
