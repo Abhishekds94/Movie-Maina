@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -50,7 +51,7 @@ import static com.abhishek.moviemania.data.FavoriteDbHelper.getAllFavorite;
 
 public class DashboardActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-    public static final String API_KEY = "b9227e455238e6a36dc7deddd582f0b2";
+    public static final String API_KEY = "API-KEY";
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Adapter adapter,favAdapter;
