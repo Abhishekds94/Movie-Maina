@@ -1,1 +1,1 @@
-Get you API key from https://www.themoviedb.org/settings/api, then, replace it woth API-KEY in DashboardActivity.java file in the project and run the application.
+Get you API key from https://www.themoviedb.org/settings/api, then, replace it with API-KEY in DashboardActivity.java file in the project and run the application.
