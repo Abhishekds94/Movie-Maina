@@ -30,7 +30,7 @@
                 android:layout_below="@+id/iv_moviePoster"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:text="Movie Name: "
+                android:text="@string/movie_name"
                 android:textColor="#fff"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -43,10 +43,10 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_toRightOf="@+id/tv_movieName"
-                android:text="Movie Name"
                 android:textColor="#fff"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:maxLines="1"/>
 
             <TextView
                 android:id="@+id/tv_movieRelease"
@@ -55,7 +55,7 @@
                 android:layout_below="@+id/tv_movieName"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Release Date: "
+                android:text="@string/release_date"
                 android:textColor="#fff"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -68,7 +68,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/tv_movieRelease"
-                android:text="Feb 29th"
                 android:textColor="#fff"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -80,7 +79,7 @@
                 android:layout_below="@+id/tv_movieRelease"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Rating: "
+                android:text="@string/rating"
                 android:textColor="#fff"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -93,7 +92,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/tv_movieRelease"
-                android:text=" 1/10"
                 android:textColor="#fff"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -128,7 +126,7 @@
                 android:layout_below="@id/lineOne"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:text="Plot of the Movie"
+                android:text="@string/label_plot"
                 android:textColor="#fff"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -163,7 +161,7 @@
                 android:layout_below="@id/lineThree"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:text="Trailer(s) of the Movie"
+                android:text="@string/label_trailer"
                 android:textColor="#fff"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -177,7 +175,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:paddingBottom="10dp"
-                android:textColor="#fff"></androidx.recyclerview.widget.RecyclerView>
+                android:textColor="#fff"/>
 
 
             <View
@@ -198,7 +196,7 @@
                 android:layout_below="@id/lineFour"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:text="Review(s) of the Movie"
+                android:text="@string/label_review"
                 android:textColor="#fff"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -212,7 +210,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:paddingBottom="10dp"
-                android:textColor="#fff"></androidx.recyclerview.widget.RecyclerView>
+                android:textColor="#fff"/>
 
         </RelativeLayout>
     </ScrollView>

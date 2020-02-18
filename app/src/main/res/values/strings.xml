@@ -5,4 +5,12 @@
     <string name="pref_sort_popular">Most Popular</string>
     <string name="pref_highest_rated">Highest Rated</string>
     <string name="pref_fav">Favorite</string>
+    <string name="movie_name">Movie Name: </string>
+    <string name="release_date">Release Date: </string>
+    <string name="rating">Rating: </string>
+    <string name="label_plot">Plot of the Movie</string>
+    <string name="label_trailer">Trailer(s) of the Movie</string>
+    <string name="label_review">Review(s) of the Movie</string>
+    <string name="udacity">A project of Udacity Nano Degree Course</string>
+    <string name="internet">My name is Bauer, I like chewing cables. Please check yours and try again!</string>
 </resources>
