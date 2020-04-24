@@ -1,3 +1,7 @@
+<p align="center">
+	<img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/app/src/main/res/drawable/logo.png" width="220">
+</p>
+
 # Movie Mania
 
 Movie Mania is an Android application that displays all the movies from [The Movie DataBase](https://www.themoviedb.org/?language=en-US) based on Popular movies, Top rated and favorite movies based on user selection.
