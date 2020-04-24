@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/app/src/main/res/drawable/logo.png" width="220">
+	<img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/app/src/main/res/drawable/logo.png" width="180">
 </p>
 
 # Movie Mania
