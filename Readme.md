@@ -37,31 +37,31 @@ You can build the app with Android Studio or with `./gradlew assembleDebug` comm
 
 ## Screenshots
 <div>
-  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img1.jpg" width="220">
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/screenshots/img1.jpg" width="220">
 
-  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img2.jpg" width="220">
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/screenshots/img2.jpg" width="220">
 
-  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img3.jpg" width="220">
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/screenshots/img3.jpg" width="220">
 </div>
 
 <div>
-  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img4.jpg" width="220">
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/screenshots/img4.jpg" width="220">
 
-  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img5.jpg" width="220">
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/screenshots/img5.jpg" width="220">
 
-  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img6.jpg" width="220">
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/screenshots/img6.jpg" width="220">
 </div>
 
 <div>
-  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img7.jpg" width="220">
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/screenshots/img7.jpg" width="220">
 
-  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img8.jpg" width="220">
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/screenshots/img8.jpg" width="220">
 
-  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img9.jpg" width="220">
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/screenshots/img9.jpg" width="220">
 </div>
 
 ## App Working Video
-<a href="https://youtu.be/wQ2zRsGT2UI?" target="_blank"><img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/video.jpg" 
+<a href="https://youtu.be/wQ2zRsGT2UI?" target="_blank"><img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/screenshots/video.jpg" 
 alt="Video Working" width="220" /></a>
 
 ## Future Scope
