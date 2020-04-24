@@ -36,10 +36,33 @@ API keys required,
 You can build the app with Android Studio or with `./gradlew assembleDebug` command.
 
 ## Screenshots
+<div>
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img1.jpg" width="220">
 
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img2.jpg" width="220">
+
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img3.jpg" width="220">
+</div>
+
+<div>
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img4.jpg" width="220">
+
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img5.jpg" width="220">
+
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img6.jpg" width="220">
+</div>
+
+<div>
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img7.jpg" width="220">
+
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img8.jpg" width="220">
+
+  <img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/img9.jpg" width="220">
+</div>
 
 ## App Working Video
-
+<a href="https://youtu.be/wQ2zRsGT2UI?" target="_blank"><img src="https://github.com/Abhishekds94/Movie-Mania/blob/master/Screenshots/video.jpg" 
+alt="Video Working" width="220" /></a>
 
 ## Future Scope
 Below are a few of the ideas that I could think of to enhance the application,
